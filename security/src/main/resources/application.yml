@@ -1,0 +1,11 @@
+
+auth0:
+  audience: "https://quickstarts/api"
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: "https://dev-vlxr2x0y2xlpdk8c.us.auth0.com"
+server:
+  port: 9999
