@@ -28,4 +28,10 @@ public class SolutionTest {
         System.out.println(solution.gcdOfStrings("a", "b"));
         System.out.println(solution.gcdOfStrings("abab", "abb"));
     }
+
+    @Test
+    public void reverseWords() {
+        String s = "the sky is blue";
+        System.out.println(solution.reverseWords(s));
+    }
 }

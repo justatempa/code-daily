@@ -3,6 +3,8 @@ package life.runfast.algorithm;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 /**
  * @author justatempa
  * @description
@@ -22,6 +24,11 @@ public class DraftTest {
         Assert.assertFalse(draft.parentheses1("(()]"));
         Assert.assertFalse(draft.parentheses1("(()"));
         Assert.assertFalse(draft.parentheses1("([{)])"));
+    }
+
+    @Test
+    public void testSplit() {
+        Arrays.stream("1    2".split(" ")).forEach(System.out::println);
     }
 
 }

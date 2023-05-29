@@ -150,4 +150,80 @@ public class Solution {
         flower += (zeroCount - 1) / 2;
         return flower >= n;
     }
+
+    /**
+     *345. 反转字符串中的元音字母
+     * 给你一个字符串 s ，仅反转字符串中的所有元音字母，并返回结果字符串。
+     *
+     * 元音字母包括 'a'、'e'、'i'、'o'、'u'，且可能以大小写两种形式出现不止一次。
+     * https://leetcode.cn/problems/reverse-vowels-of-a-string/?envType=study-plan-v2&envId=leetcode-75
+     * @author justatempa
+     * @date 2023/5/29
+     * @param s:
+     * @return: java.lang.String
+     */
+    public String reverseVowels(String s) {
+        if(s == null || s.length() == 0) {
+            return s;
+        }
+        int p1 = 0, p2 = s.length() - 1;
+        char[] chars = s.toCharArray();
+        while(p1 < p2) {
+            while (p1 < p2 && !isVowel(chars[p1])) {
+                p1++;
+            }
+            while (p1 < p2 && !isVowel(chars[p2])) {
+                p2--;
+            }
+            if(p1  < p2) {
+                char tmp = chars[p1];
+                chars[p1] = chars[p2];
+                chars[p2] = tmp;
+            }
+            p1++;
+            p2--;
+        }
+        return new String(chars);
+    }
+
+    private boolean isVowel(char c) {
+        return c == 'a' || c == 'e' || c == 'i'
+                || c == 'o' || c == 'u' || c == 'A'
+                || c == 'E' || c == 'I' || c == 'O'
+                || c == 'U';
+    }
+
+    /**
+     *
+     * @author justatempa
+     * @date 2023/5/29
+     * @param s:
+     * @return: java.lang.String
+     *
+     *         // 除去开头和末尾的空白字符
+     *         s = s.trim();
+     *         // 正则匹配连续的空白字符作为分隔符分割
+     *         List<String> wordList = Arrays.asList(s.split("\\s+"));
+     *         Collections.reverse(wordList);
+     *         return String.join(" ", wordList);
+     *
+     * 作者：LeetCode-Solution
+     * 链接：https://leetcode.cn/problems/reverse-words-in-a-string/solution/fan-zhuan-zi-fu-chuan-li-de-dan-ci-by-leetcode-sol/
+     * 来源：力扣（LeetCode）
+     * 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+     */
+    public String reverseWords(String s) {
+        if(s == null) {
+            return null;
+        }
+        String[] s1 = s.split(" ");
+        int len = s.length();
+        StringBuilder sb = new StringBuilder();
+        for (int i = s1.length - 1; i >= 0; i--) {
+            if(s1[i].trim() != "") {
+                sb.append(s1[i].trim()).append(" ");
+            }
+        }
+        return sb.toString().endsWith(" ") ? sb.substring(0, sb.length() - 1) : sb.toString();
+    }
 }
