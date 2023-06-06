@@ -1,5 +1,8 @@
 package life.runfast.algorithm.leetcode76;
 
+import life.runfast.algorithm.utils.Utils;
+
+import javax.rmi.CORBA.Util;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -225,5 +228,75 @@ public class Solution {
             }
         }
         return sb.toString().endsWith(" ") ? sb.substring(0, sb.length() - 1) : sb.toString();
+    }
+
+    /**
+     * https://leetcode.cn/problems/product-of-array-except-self/
+     * 238. 除自身以外数组的乘积
+     * 给你一个整数数组 nums，返回 数组 answer ，其中 answer[i] 等于 nums 中除 nums[i] 之外其余各元素的乘积 。
+     *
+     * 题目数据 保证 数组 nums之中任意元素的全部前缀元素和后缀的乘积都在  32 位 整数范围内。
+     *
+     * 请不要使用除法，且在 O(n) 时间复杂度内完成此题。
+     * @author justatempa
+     * @date 2023/6/6
+     * @param nums:
+     * @return: int[]
+     */
+    public int[] productExceptSelf(int[] nums) {
+        if(nums == null || nums.length ==0) {
+            return nums;
+        }
+        int[] left = new int[nums.length];
+        int[] right = new int[nums.length];
+        left[0] = 1;
+        for (int i = 1; i < nums.length; i++) {
+            left[i] = left[i-1] * nums[i-1];
+        }
+        right[nums.length - 1] = 1;
+        for (int i = nums.length - 2; i >=0 ; i--) {
+            right[i] = right[i+1] * nums[i+1];
+        }
+        int[] ans = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            ans[i] = left[i] * right[i];
+        }
+        Utils.print(left);
+        Utils.print(right);
+        return ans;
+    }
+
+    /**
+     * https://leetcode.cn/problems/increasing-triplet-subsequence/solution/di-zeng-de-san-yuan-zi-xu-lie-by-leetcod-dp2r/
+     * 334. 递增的三元子序列
+     * 给你一个整数数组 nums ，判断这个数组中是否存在长度为 3 的递增子序列。
+     *
+     * 如果存在这样的三元组下标 (i, j, k) 且满足 i < j < k ，使得 nums[i] < nums[j] < nums[k] ，返回 true ；否则，返回 false 。
+     * @author justatempa
+     * @date 2023/6/6
+     * @param nums:
+     * @return: boolean
+     */
+    public boolean increasingTriplet(int[] nums) {
+        if(nums == null || nums.length < 3) {
+            return false;
+        }
+        int length = nums.length;
+        int[] left = new int[length];
+        int[] right = new int[length];
+        left[0] = nums[0];
+        for (int i = 1; i < length; i++) {
+            left[i] = Math.min(left[i - 1], nums[i]);
+        }
+        right[length - 1] = nums[length - 1];
+        for (int i = length - 2; i >= 0 ; i--) {
+            right[i] = Math.max(right[i+1], nums[i]);
+        }
+        for (int i = 1; i < length - 1; i++) {
+            if(nums[i] > left[i-1] && nums[i] < right[i+1]) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -34,4 +34,9 @@ public class SolutionTest {
         String s = "the sky is blue";
         System.out.println(solution.reverseWords(s));
     }
+
+    @Test
+    public void productExceptSelf(){
+        solution.productExceptSelf(new int[]{1,2,3,4});
+    }
 }
