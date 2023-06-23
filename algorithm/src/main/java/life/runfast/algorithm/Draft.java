@@ -1,5 +1,7 @@
 package life.runfast.algorithm;
 
+import life.runfast.algorithm.utils.ListNode;
+
 import java.util.Stack;
 
 /**
@@ -54,5 +56,43 @@ public class Draft {
             }
         }
         return stack.isEmpty();
+    }
+
+    public ListNode<Integer> reserve(ListNode<Integer> root) {
+        if(root == null) {
+            return null;
+        }
+        ListNode<Integer> prev = null;
+        ListNode<Integer> cur = root;
+
+        while(cur != null) {
+            ListNode<Integer> next = cur.getNext();
+            cur.setNext(prev);
+            prev = cur;
+            cur = next;
+        }
+        return prev;
+    }
+
+    public <T> ListNode<T> deleteN(ListNode<T> root, int n) {
+        ListNode<T> head = new ListNode<>(null, root);
+        ListNode<T> n1 = findN(head, n + 1);
+        n1.setNext(n1.getNext().getNext());
+        return head.getNext();
+    }
+
+    // 找到倒数第N个
+    public <T> ListNode<T> findN(ListNode<T> root, int n) {
+        //ListNode<T> head = new ListNode<>(null, root);
+        ListNode<T> p1 = root;
+        ListNode<T> p2 = root;
+        while(n-- > 0) {
+            p2 = p2.getNext();
+        }
+        while(p2 != null) {
+            p1 = p1.getNext();
+            p2 =p2.getNext();
+        }
+        return p1;
     }
 }

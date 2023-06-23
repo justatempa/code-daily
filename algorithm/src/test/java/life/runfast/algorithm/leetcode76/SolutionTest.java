@@ -39,4 +39,10 @@ public class SolutionTest {
     public void productExceptSelf(){
         solution.productExceptSelf(new int[]{1,2,3,4});
     }
+
+    @Test
+    public void compress() {
+        char[] chars = new char[]{'a','b','b','c','c'};
+        solution.compress(chars);
+    }
 }

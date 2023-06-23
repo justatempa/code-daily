@@ -1,5 +1,6 @@
 package life.runfast.algorithm;
 
+import life.runfast.algorithm.utils.ListNode;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -29,6 +30,32 @@ public class DraftTest {
     @Test
     public void testSplit() {
         Arrays.stream("1    2".split(" ")).forEach(System.out::println);
+    }
+
+
+    @Test
+    public void testGenerateInt() {
+        ListNode<Integer> integerListNode = ListNode.generateInt(5);
+        ListNode.print(integerListNode);
+    }
+
+    @Test
+    public void findN() {
+        ListNode<Integer> integerListNode = ListNode.generateInt(1);
+        Draft draft = new Draft();
+        ListNode<Integer> n = draft.findN(integerListNode, 1);
+        System.out.println(n.getData());
+
+        //System.out.println(draft.findN(integerListNode, 5).getData());
+
+    }
+
+    @Test
+    public void deleteN() {
+        ListNode<Integer> integerListNode = ListNode.generateInt(1);
+        Draft draft = new Draft();
+        ListNode<Integer> integerListNode1 = draft.deleteN(integerListNode, 1);
+        ListNode.print(integerListNode1);
     }
 
 }
