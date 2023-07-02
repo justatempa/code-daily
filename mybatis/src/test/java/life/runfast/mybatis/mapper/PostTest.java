@@ -1,5 +1,7 @@
 package life.runfast.mybatis.mapper;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import life.runfast.mybatis.model.Post;
 import org.apache.ibatis.session.RowBounds;
 import org.junit.jupiter.api.Test;
@@ -19,12 +21,18 @@ public class PostTest {
     private PostMapper postMapper;
 
     @Test
-    public void findPostByPage() {
+    public void findPostByRowBounds() {
         RowBounds rowBounds = new RowBounds(0, 2);
 
-        List<Post> postByPage = postMapper.findPostByPage(rowBounds);
+        List<Post> postByPage = postMapper.findPostByRowBounds(rowBounds);
 
         System.out.println(postByPage.toString());
     }
+    @Test
+    public void findPostByPage() {
+        PageHelper.startPage(1,3);
+        Page<Post> postByPage = postMapper.findPostByPage();
 
+        System.out.println(postByPage.toString());
+    }
 }

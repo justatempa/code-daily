@@ -1,5 +1,6 @@
 package life.runfast.mybatis.mapper;
 
+import com.github.pagehelper.Page;
 import life.runfast.mybatis.model.Post;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
@@ -16,5 +17,7 @@ import java.util.List;
 @Repository
 public interface PostMapper {
 
-    List<Post> findPostByPage(RowBounds rowBounds);
+    List<Post> findPostByRowBounds(RowBounds rowBounds);
+
+    Page<Post> findPostByPage();
 }
