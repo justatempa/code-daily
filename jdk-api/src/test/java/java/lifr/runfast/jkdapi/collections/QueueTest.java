@@ -1,9 +1,8 @@
-package life.runfast.jdkapi.collections;
+package java.lifr.runfast.jkdapi.collections;
 
 import org.junit.Test;
 
 import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingDeque;
 
 /**
  * @author justatempa

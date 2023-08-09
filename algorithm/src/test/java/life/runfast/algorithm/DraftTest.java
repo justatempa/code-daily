@@ -5,6 +5,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author justatempa
@@ -56,6 +58,21 @@ public class DraftTest {
         Draft draft = new Draft();
         ListNode<Integer> integerListNode1 = draft.deleteN(integerListNode, 1);
         ListNode.print(integerListNode1);
+    }
+
+    public int[] intersection(int[] nums1, int[] nums2) {
+        Set<Integer> set = new HashSet<>();
+        for(int n : nums1) {
+            set.add(n);
+        }
+
+        for(int n : nums2) {
+            if(set.add(n)) {
+                set.remove(n);
+            }
+        }
+
+
     }
 
 }
